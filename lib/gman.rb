@@ -32,6 +32,11 @@ module Gman
       list.rules.any? { |rule| rule.value == domain }
     end
 
+    def fed?(string)
+      return false unless Gman.valid? string
+      !!(Gman.get_domain(string) =~ /\.(gov|mil|fed\.us)$/)
+    end
+
     # returns an instance of our custom public suffix list
     # list behaves like PublicSuffix::List but is limited to our whitelisted domains
     def list
